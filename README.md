@@ -1,4 +1,4 @@
-# esb-inbound-feed
+# Feed ESB Inbound
 
 The Feed inbound endpoint allows you to Consume feeds through WSO2 ESB.
 
