@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.apache.synapse.inbound</groupId>
     <artifactId>org.apache.synapse.feedep.class</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Atom Feed Consumer</name>
     <url>http://wso2.org</url>
     <packaging>bundle</packaging>
@@ -88,6 +88,13 @@
             </releases>
         </repository>
     </repositories>
+    <scm>
+        <connection>scm:git:https://github.com/wso2-extensions/esb-inbound-feed.git</connection>
+        <url>https://github.com/wso2-extensions/esb-inbound-feed.git</url>
+        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-inbound-feed
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
     <build>
         <plugins>
             <plugin>
