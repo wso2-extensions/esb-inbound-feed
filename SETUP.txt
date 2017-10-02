@@ -1,0 +1,31 @@
+Pre-requisites:
+
+ - Maven 3.x
+ - Java 1.7 or above
+
+Tested Platform:
+
+ - UBUNTU 16.04
+ - WSO2 ESB 5.0.0, EI 6.1.1
+
+
+Sample Inbound Configuration:
+
+<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
+                 name="Feed"
+                 sequence="response"
+                 onError="fault"
+                 class="org.wso2.carbon.inbound.feedep.FeedInbound"
+                 suspend="false">
+   <parameters>
+      <parameter name="inbound.behavior">polling</parameter>
+      <parameter name="interval">2000</parameter>
+      <parameter name="sequential">true</parameter>
+      <parameter name="coordination">true</parameter>
+      <parameter name="feed.url">https://news.google.com/news?output=atom</parameter>
+      <parameter name="feed.type">Atom</parameter>
+   </parameters>
+</inboundEndpoint>
+
+  Navigate to "<FEED_INBOUND_HOME>" and run the following command.
+  $ mvn clean install
