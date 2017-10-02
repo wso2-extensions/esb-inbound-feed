@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  * 
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -60,9 +60,9 @@ public class FeedInject implements InjectHandler {
      * inject the message to the sequence
      */
     public boolean invoke(Object object) {
-        org.apache.synapse.MessageContext messageContext = null;
+        org.apache.synapse.MessageContext msgCtx;
         try {
-            org.apache.synapse.MessageContext msgCtx = createMessageContext();
+            msgCtx = createMessageContext();
             MessageContext axis2MsgCtx = ((org.apache.synapse.core.axis2.Axis2MessageContext) msgCtx)
                     .getAxis2MessageContext();
             // Determine the message builder to use
@@ -77,9 +77,10 @@ public class FeedInject implements InjectHandler {
                 }
             }
             OMElement documentElement = (OMElement) object;
-            messageContext.setEnvelope(TransportUtils.createSOAPEnvelope(documentElement));
+            msgCtx.setEnvelope(TransportUtils.createSOAPEnvelope(documentElement));
         } catch (AxisFault axisFault) {
-            log.error("Error while setting message to the message context : " + axisFault.getMessage(), axisFault);
+            throw new SynapseException("Error while setting message to the message context : " + axisFault.getMessage(),
+                    axisFault);
         }
         // Inject the message to the sequence.
         if (StringUtils.isEmpty(injectingSeq)) {
@@ -91,7 +92,7 @@ public class FeedInject implements InjectHandler {
         if (log.isDebugEnabled()) {
             log.debug("injecting message to sequence : " + injectingSeq);
         }
-        synapseEnvironment.injectInbound(messageContext, seq, sequential);
+        synapseEnvironment.injectInbound(msgCtx, seq, sequential);
         return true;
     }
 
