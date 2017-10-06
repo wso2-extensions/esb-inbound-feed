@@ -60,10 +60,10 @@ public class FeedInject implements InjectHandler {
      * inject the message to the sequence
      */
     public boolean invoke(Object object) {
-        org.apache.synapse.MessageContext msgCtx;
+        org.apache.synapse.MessageContext messageContext;
         try {
-            msgCtx = createMessageContext();
-            MessageContext axis2MsgCtx = ((org.apache.synapse.core.axis2.Axis2MessageContext) msgCtx)
+            messageContext = createMessageContext();
+            MessageContext axis2MsgCtx = ((org.apache.synapse.core.axis2.Axis2MessageContext) messageContext)
                     .getAxis2MessageContext();
             // Determine the message builder to use
             Builder builder = null;
@@ -77,7 +77,7 @@ public class FeedInject implements InjectHandler {
                 }
             }
             OMElement documentElement = (OMElement) object;
-            msgCtx.setEnvelope(TransportUtils.createSOAPEnvelope(documentElement));
+            messageContext.setEnvelope(TransportUtils.createSOAPEnvelope(documentElement));
         } catch (AxisFault axisFault) {
             throw new SynapseException("Error while setting message to the message context : " + axisFault.getMessage(),
                     axisFault);
@@ -92,7 +92,7 @@ public class FeedInject implements InjectHandler {
         if (log.isDebugEnabled()) {
             log.debug("injecting message to sequence : " + injectingSeq);
         }
-        synapseEnvironment.injectInbound(msgCtx, seq, sequential);
+        synapseEnvironment.injectInbound(messageContext, seq, sequential);
         return true;
     }
 
