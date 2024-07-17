@@ -1,0 +1,52 @@
+{
+  "name": "feedInbound",
+  "type": "inbound-connector",
+  "title": "Feed Inbound Connector",
+  "help": "Configure the feed inbound connector to consume RSS or Atom feeds from specified URLs.",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "feedUrl",
+        "displayName": "Feed URL",
+        "inputType": "string",
+        "required": "true",
+        "helpTip": "URL of the RSS or Atom feed to be consumed."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "feedType",
+        "displayName": "Feed Type",
+        "inputType": "combo",
+        "comboValues": ["RSS", "Atom"],
+        "required": "true",
+        "helpTip": "Type of feed to consume (RSS or Atom)."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "feedFormat",
+        "displayName": "Feed Format",
+        "inputType": "combo",
+        "comboValues": ["TEXT", "XML"],
+        "defaultValue": "TEXT",
+        "required": "true",
+        "helpTip": "Format of the feed data (TEXT or XML)."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "timeFormat",
+        "displayName": "Feed Time Format",
+        "inputType": "string",
+        "defaultValue": "EEE, d MMM yyyy HH:mm:ss Z",
+        "required": "false",
+        "helpTip": "Date format used in the feed. Default is RFC 822 for RSS."
+      }
+    }
+  ]
+}
