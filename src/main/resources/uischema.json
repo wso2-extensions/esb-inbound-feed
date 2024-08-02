@@ -1,51 +1,157 @@
 {
+  "id": "org.wso2.carbon.inbound.feedep.FeedInbound",
   "name": "feedInbound",
   "type": "inbound-connector",
   "title": "Feed Inbound Connector",
-  "help": "Configure the feed inbound connector to consume RSS or Atom feeds from specified URLs.",
+  "help": "Configure the feed inbound connector to consume RSS or Atom feeds from specified URL.",
   "elements": [
     {
-      "type": "attribute",
+      "type": "attributeGroup",
       "value": {
-        "name": "feedUrl",
-        "displayName": "Feed URL",
-        "inputType": "string",
-        "required": "true",
-        "helpTip": "URL of the RSS or Atom feed to be consumed."
+        "groupName": "Generic",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "name",
+              "displayName": "Inbound Endpoint Name",
+              "inputType": "string",
+              "required": "true",
+              "helpTip": "Unique identifier for the Feed inbound endpoint."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "class",
+              "displayName": "Class Name",
+              "inputType": "string",
+              "required": "true",
+              "hidden": true,
+              "defaultValue": "org.wso2.carbon.inbound.feedep.FeedInbound"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sequence",
+              "displayName": "Injecting Sequence Name",
+              "inputType": "string",
+              "required": "true",
+              "helpTip": "Sequence to inject the Feed message"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "onError",
+              "displayName": "Error Sequence Name",
+              "inputType": "string",
+              "required": "true",
+              "helpTip": "Error sequence to invoke on fault"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "suspend",
+              "displayName": "Suspend Inbound",
+              "inputType": "checkbox",
+              "defaultValue": false,
+              "hidden": true,
+              "required": "false",
+              "helpTip": "Suspend Inbound"
+            }
+          }
+        ]
       }
     },
     {
-      "type": "attribute",
+      "type": "attributeGroup",
       "value": {
-        "name": "feedType",
-        "displayName": "Feed Type",
-        "inputType": "combo",
-        "comboValues": ["RSS", "Atom"],
-        "required": "true",
-        "helpTip": "Type of feed to consume (RSS or Atom)."
+        "groupName": "Inbound Functional",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "interval",
+              "displayName": "Polling interval",
+              "inputType": "string",
+              "required": "true",
+              "helpTip": "The polling interval for the Feed inbound endpoint."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sequential",
+              "displayName": "Execute sequentially",
+              "inputType": "checkbox",
+              "defaultValue": true,
+              "required": "false",
+              "helpTip": "The behaviour when executing the given sequence."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "coordination",
+              "displayName": "Coordination",
+              "inputType": "checkbox",
+              "defaultValue": true,
+              "required": "false",
+              "helpTip": "In a clustered setup, this will run the inbound only in a single worker node."
+            }
+          }
+        ]
       }
     },
     {
-      "type": "attribute",
+      "type": "attributeGroup",
       "value": {
-        "name": "feedFormat",
-        "displayName": "Feed Format",
-        "inputType": "combo",
-        "comboValues": ["TEXT", "XML"],
-        "defaultValue": "TEXT",
-        "required": "true",
-        "helpTip": "Format of the feed data (TEXT or XML)."
+        "groupName": "Feed",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "feed.url",
+              "displayName": "Feed URL",
+              "inputType": "string",
+              "required": "true",
+              "helpTip": "URL of the RSS or Atom feed to be consumed."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "feed.type",
+              "displayName": "Feed Type",
+              "inputType": "combo",
+              "comboValues": ["RSS", "Atom"],
+              "required": "true",
+              "helpTip": "Type of feed to consume (RSS or Atom)."
+            }
+          }
+        ]
       }
     },
     {
-      "type": "attribute",
+      "type": "attributeGroup",
       "value": {
-        "name": "timeFormat",
-        "displayName": "Feed Time Format",
-        "inputType": "string",
-        "defaultValue": "EEE, d MMM yyyy HH:mm:ss Z",
-        "required": "false",
-        "helpTip": "Date format used in the feed. Default is RFC 822 for RSS."
+        "groupName": "Optional",
+        "isCollapsed": true,
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "TimeFormat",
+              "displayName": "Feed Time Format",
+              "inputType": "string",
+              "required": "false",
+              "helpTip": "Date format used in the feed. Default is 'EEE, d MMM yyyy HH:mm:ss Z' for RSS."
+            }
+          }
+        ]
       }
     }
   ]
