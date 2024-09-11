@@ -4,7 +4,7 @@
     "category": "Inbound Endpoint",
     "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/Feed+Inbound+and+Connector",
     "description": "The Feed inbound endpoint allows you to Consume feeds through WSO2 ESB.",
-    "status": "Active",
+    "status": "Inactive",
     "labels": [
         "Feed"
     ],
